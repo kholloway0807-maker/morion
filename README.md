@@ -4,7 +4,7 @@ Personal automation repo. Main feature: a daily **7 AM morning briefing**.
 
 ## Morning briefing
 
-Every day at 7:00 AM ET, a GitHub Action runs Claude Code with the
+Every day at 7:00 AM Central, a GitHub Action runs Claude Code with the
 [`/morning-briefing`](.claude/commands/morning-briefing.md) command, which:
 
 1. **Today's schedule** — pulls dated items from [`notes/reminders.md`](notes/reminders.md)
@@ -26,8 +26,8 @@ The result is committed to `briefings/YYYY-MM-DD.md` (under 300 words, scannable
 
 ### Notes
 
-- GitHub cron runs in UTC. The schedule is `0 11 * * *` = 7 AM EDT; change to
-  `0 12 * * *` after daylight saving ends (edit
+- GitHub cron runs in UTC. The schedule is `0 12 * * *` = 7 AM CDT; change to
+  `0 13 * * *` after daylight saving ends (edit
   [`.github/workflows/morning-briefing.yml`](.github/workflows/morning-briefing.yml)).
 - There's no live calendar integration — keep `notes/reminders.md` and
   `pipeline/prospects.md` updated; the briefing reads both.

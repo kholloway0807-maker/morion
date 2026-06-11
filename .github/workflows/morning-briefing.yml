@@ -7,14 +7,14 @@
 #   (or use CLAUDE_CODE_OAUTH_TOKEN from `claude setup-token` and swap the
 #   commented lines below)
 #
-# Schedule note: GitHub cron is UTC. 11:00 UTC = 7:00 AM EDT.
-# When daylight saving ends, change to "0 12 * * *" for 7:00 AM EST.
+# Schedule note: GitHub cron is UTC. 12:00 UTC = 7:00 AM CDT.
+# When daylight saving ends, change to "0 13 * * *" for 7:00 AM CST.
 
 name: Morning Briefing
 
 on:
   schedule:
-    - cron: "0 11 * * *"
+    - cron: "0 12 * * *"
   workflow_dispatch: {}
 
 permissions:
