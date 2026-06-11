@@ -1,5 +1,5 @@
 # Daily morning briefing — runs Claude Code on a schedule and commits
-# the briefing to briefings/YYYY-MM-DD.md on main.
+# the briefing to briefings/YYYY-MM-DD.md on the default branch.
 #
 # Setup required (one time):
 #   Repo Settings → Secrets and variables → Actions → New repository secret
@@ -27,7 +27,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
           fetch-depth: 0
 
       - name: Generate briefing

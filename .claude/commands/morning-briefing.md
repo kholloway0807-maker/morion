@@ -20,4 +20,4 @@ Generate today's morning briefing for Kameron. Today's date: run `date +%Y-%m-%d
 - **Under 300 words total.** Scannable: short headers, bullets, bold the action items.
 - Include source links for trend items as markdown links.
 - Save it as `briefings/YYYY-MM-DD.md` (today's date).
-- If running in CI (the `GITHUB_ACTIONS` env var is set), commit the new file with message `Morning briefing YYYY-MM-DD` and push to `main`.
+- If running in CI (the `GITHUB_ACTIONS` env var is set), commit the new file with message `Morning briefing YYYY-MM-DD` and push to the branch currently checked out (`git push origin HEAD`).
