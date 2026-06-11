@@ -1,0 +1,40 @@
+# Daily morning briefing — runs Claude Code on a schedule and commits
+# the briefing to briefings/YYYY-MM-DD.md on main.
+#
+# Setup required (one time):
+#   Repo Settings → Secrets and variables → Actions → New repository secret
+#   Name: ANTHROPIC_API_KEY   Value: your API key from console.anthropic.com
+#   (or use CLAUDE_CODE_OAUTH_TOKEN from `claude setup-token` and swap the
+#   commented lines below)
+#
+# Schedule note: GitHub cron is UTC. 11:00 UTC = 7:00 AM EDT.
+# When daylight saving ends, change to "0 12 * * *" for 7:00 AM EST.
+
+name: Morning Briefing
+
+on:
+  schedule:
+    - cron: "0 11 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  briefing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Generate briefing
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: "/morning-briefing"
+          claude_args: |
+            --allowedTools "Read,Write,Glob,Grep,WebSearch,WebFetch,Bash(git:*),Bash(date:*)"
